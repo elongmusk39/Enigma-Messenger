@@ -2,7 +2,6 @@
 //  TabScreen.swift
 //  Enigma Messenger
 //
-//  Created by Long Nguyen on 5/14/24.
 //
 
 import SwiftUI
@@ -10,12 +9,11 @@ import SwiftUI
 struct MainScreen: View {
     
     var userID: String?
+    @State var showAuthScr: Bool = true
     
     var body: some View {
-        if userID == nil {
-            NavigationView {
-                WelcomeScreen()
-            }
+        if showAuthScr {
+            WelcomeScreen(showAuthScr: $showAuthScr)
         } else {
             TabScreen()
         }
@@ -33,6 +31,20 @@ struct TabScreen: View {
     var body: some View {
         TabView {
             HomeScreen()
+                .tabItem {
+                    Label("Home", systemImage: "house")
+                }
+            
+            StatusScreen()
+                .tabItem {
+                    Label("Status", systemImage: "circle.dashed")
+                }
+            
+            SettingScreen()
+                .tabItem {
+                    Label("Setting", systemImage: "gear")
+                }
         }
+        .tint(.blue)
     }
 }

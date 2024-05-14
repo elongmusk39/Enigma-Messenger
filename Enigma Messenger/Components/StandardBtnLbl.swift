@@ -7,12 +7,21 @@
 
 import SwiftUI
 
-struct StandardButton: View {
+struct StandardBtnLbl: View {
+    
+    var title: String
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text(title)
+            .font(.headline)
+            .fontWeight(.semibold)
+            .foregroundStyle(.white)
+            .frame(width: 360, height: 44)
+            .background(Color(.systemBlue))
+            .clipShape(.buttonBorder)
     }
 }
 
 #Preview {
-    StandardButton()
+    StandardBtnLbl(title: "ahha")
 }

@@ -8,12 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		3AAC754C2BF36EDA008DB1D4 /* Enigma_MessengerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAC754B2BF36EDA008DB1D4 /* Enigma_MessengerApp.swift */; };
-		3AAC754E2BF36EDA008DB1D4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAC754D2BF36EDA008DB1D4 /* ContentView.swift */; };
 		3AAC75502BF36EDC008DB1D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AAC754F2BF36EDC008DB1D4 /* Assets.xcassets */; };
 		3AAC75532BF36EDC008DB1D4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AAC75522BF36EDC008DB1D4 /* Preview Assets.xcassets */; };
 		3AAC755D2BF36EDC008DB1D4 /* Enigma_MessengerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAC755C2BF36EDC008DB1D4 /* Enigma_MessengerTests.swift */; };
 		3AAC75672BF36EDC008DB1D4 /* Enigma_MessengerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAC75662BF36EDC008DB1D4 /* Enigma_MessengerUITests.swift */; };
 		3AAC75692BF36EDC008DB1D4 /* Enigma_MessengerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAC75682BF36EDC008DB1D4 /* Enigma_MessengerUITestsLaunchTests.swift */; };
+		3AAC75762BF36F1A008DB1D4 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAC75752BF36F1A008DB1D4 /* HomeScreen.swift */; };
+		3AAC75782BF36F43008DB1D4 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAC75772BF36F43008DB1D4 /* MainScreen.swift */; };
+		3AAC757D2BF36F87008DB1D4 /* WelcomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAC757C2BF36F87008DB1D4 /* WelcomeScreen.swift */; };
+		3AAC75812BF36FAF008DB1D4 /* EnterNameScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAC75802BF36FAF008DB1D4 /* EnterNameScreen.swift */; };
+		3AAC75832BF36FE5008DB1D4 /* GenerateIDScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAC75822BF36FE5008DB1D4 /* GenerateIDScreen.swift */; };
+		3AAC75852BF36FFF008DB1D4 /* EnterPINScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAC75842BF36FFF008DB1D4 /* EnterPINScreen.swift */; };
+		3AAC75872BF3701C008DB1D4 /* FinalDisplayScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAC75862BF3701C008DB1D4 /* FinalDisplayScreen.swift */; };
+		3AAC758C2BF371C5008DB1D4 /* SettingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAC758B2BF371C5008DB1D4 /* SettingScreen.swift */; };
+		3AAC758E2BF371CD008DB1D4 /* StatusScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAC758D2BF371CD008DB1D4 /* StatusScreen.swift */; };
+		3AAC75912BF3748C008DB1D4 /* TxtFieldModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAC75902BF3748C008DB1D4 /* TxtFieldModifier.swift */; };
+		3AAC75942BF376A6008DB1D4 /* StandardBtnLbl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAC75932BF376A6008DB1D4 /* StandardBtnLbl.swift */; };
+		3AAC75962BF37A83008DB1D4 /* CONSTANTS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAC75952BF37A83008DB1D4 /* CONSTANTS.swift */; };
+		3AAC75982BF37B91008DB1D4 /* FriendListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAC75972BF37B91008DB1D4 /* FriendListScreen.swift */; };
+		3AF4BA8D2BF3E1D600C9E605 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF4BA8C2BF3E1D600C9E605 /* LoadingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +49,6 @@
 /* Begin PBXFileReference section */
 		3AAC75482BF36EDA008DB1D4 /* Enigma Messenger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Enigma Messenger.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AAC754B2BF36EDA008DB1D4 /* Enigma_MessengerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enigma_MessengerApp.swift; sourceTree = "<group>"; };
-		3AAC754D2BF36EDA008DB1D4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3AAC754F2BF36EDC008DB1D4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3AAC75522BF36EDC008DB1D4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3AAC75582BF36EDC008DB1D4 /* Enigma MessengerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Enigma MessengerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +56,20 @@
 		3AAC75622BF36EDC008DB1D4 /* Enigma MessengerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Enigma MessengerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AAC75662BF36EDC008DB1D4 /* Enigma_MessengerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enigma_MessengerUITests.swift; sourceTree = "<group>"; };
 		3AAC75682BF36EDC008DB1D4 /* Enigma_MessengerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enigma_MessengerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		3AAC75752BF36F1A008DB1D4 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
+		3AAC75772BF36F43008DB1D4 /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
+		3AAC757C2BF36F87008DB1D4 /* WelcomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreen.swift; sourceTree = "<group>"; };
+		3AAC75802BF36FAF008DB1D4 /* EnterNameScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterNameScreen.swift; sourceTree = "<group>"; };
+		3AAC75822BF36FE5008DB1D4 /* GenerateIDScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateIDScreen.swift; sourceTree = "<group>"; };
+		3AAC75842BF36FFF008DB1D4 /* EnterPINScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterPINScreen.swift; sourceTree = "<group>"; };
+		3AAC75862BF3701C008DB1D4 /* FinalDisplayScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalDisplayScreen.swift; sourceTree = "<group>"; };
+		3AAC758B2BF371C5008DB1D4 /* SettingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingScreen.swift; sourceTree = "<group>"; };
+		3AAC758D2BF371CD008DB1D4 /* StatusScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusScreen.swift; sourceTree = "<group>"; };
+		3AAC75902BF3748C008DB1D4 /* TxtFieldModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TxtFieldModifier.swift; sourceTree = "<group>"; };
+		3AAC75932BF376A6008DB1D4 /* StandardBtnLbl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardBtnLbl.swift; sourceTree = "<group>"; };
+		3AAC75952BF37A83008DB1D4 /* CONSTANTS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CONSTANTS.swift; sourceTree = "<group>"; };
+		3AAC75972BF37B91008DB1D4 /* FriendListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListScreen.swift; sourceTree = "<group>"; };
+		3AF4BA8C2BF3E1D600C9E605 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,7 +121,11 @@
 			isa = PBXGroup;
 			children = (
 				3AAC754B2BF36EDA008DB1D4 /* Enigma_MessengerApp.swift */,
-				3AAC754D2BF36EDA008DB1D4 /* ContentView.swift */,
+				3AAC75882BF37116008DB1D4 /* Models */,
+				3AAC75892BF3711C008DB1D4 /* Views */,
+				3AAC758A2BF37138008DB1D4 /* ViewModel */,
+				3AAC758F2BF37479008DB1D4 /* Components */,
+				3AAC75952BF37A83008DB1D4 /* CONSTANTS.swift */,
 				3AAC754F2BF36EDC008DB1D4 /* Assets.xcassets */,
 				3AAC75512BF36EDC008DB1D4 /* Preview Content */,
 			);
@@ -125,6 +155,71 @@
 				3AAC75682BF36EDC008DB1D4 /* Enigma_MessengerUITestsLaunchTests.swift */,
 			);
 			path = "Enigma MessengerUITests";
+			sourceTree = "<group>";
+		};
+		3AAC75792BF36F46008DB1D4 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				3AAC75772BF36F43008DB1D4 /* MainScreen.swift */,
+				3AAC757B2BF36F73008DB1D4 /* Authentication */,
+				3AAC757A2BF36F6D008DB1D4 /* Home */,
+				3AAC758D2BF371CD008DB1D4 /* StatusScreen.swift */,
+				3AAC758B2BF371C5008DB1D4 /* SettingScreen.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		3AAC757A2BF36F6D008DB1D4 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				3AAC75752BF36F1A008DB1D4 /* HomeScreen.swift */,
+				3AAC75972BF37B91008DB1D4 /* FriendListScreen.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		3AAC757B2BF36F73008DB1D4 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				3AAC757C2BF36F87008DB1D4 /* WelcomeScreen.swift */,
+				3AAC75802BF36FAF008DB1D4 /* EnterNameScreen.swift */,
+				3AAC75822BF36FE5008DB1D4 /* GenerateIDScreen.swift */,
+				3AAC75842BF36FFF008DB1D4 /* EnterPINScreen.swift */,
+				3AAC75862BF3701C008DB1D4 /* FinalDisplayScreen.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		3AAC75882BF37116008DB1D4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3AAC75892BF3711C008DB1D4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3AAC75792BF36F46008DB1D4 /* Screens */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3AAC758A2BF37138008DB1D4 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		3AAC758F2BF37479008DB1D4 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				3AAC75902BF3748C008DB1D4 /* TxtFieldModifier.swift */,
+				3AAC75932BF376A6008DB1D4 /* StandardBtnLbl.swift */,
+				3AF4BA8C2BF3E1D600C9E605 /* LoadingView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,8 +352,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3AAC754E2BF36EDA008DB1D4 /* ContentView.swift in Sources */,
 				3AAC754C2BF36EDA008DB1D4 /* Enigma_MessengerApp.swift in Sources */,
+				3AAC75852BF36FFF008DB1D4 /* EnterPINScreen.swift in Sources */,
+				3AAC75762BF36F1A008DB1D4 /* HomeScreen.swift in Sources */,
+				3AAC758C2BF371C5008DB1D4 /* SettingScreen.swift in Sources */,
+				3AAC75872BF3701C008DB1D4 /* FinalDisplayScreen.swift in Sources */,
+				3AAC75832BF36FE5008DB1D4 /* GenerateIDScreen.swift in Sources */,
+				3AAC75962BF37A83008DB1D4 /* CONSTANTS.swift in Sources */,
+				3AAC75982BF37B91008DB1D4 /* FriendListScreen.swift in Sources */,
+				3AF4BA8D2BF3E1D600C9E605 /* LoadingView.swift in Sources */,
+				3AAC757D2BF36F87008DB1D4 /* WelcomeScreen.swift in Sources */,
+				3AAC75782BF36F43008DB1D4 /* MainScreen.swift in Sources */,
+				3AAC75942BF376A6008DB1D4 /* StandardBtnLbl.swift in Sources */,
+				3AAC75812BF36FAF008DB1D4 /* EnterNameScreen.swift in Sources */,
+				3AAC758E2BF371CD008DB1D4 /* StatusScreen.swift in Sources */,
+				3AAC75912BF3748C008DB1D4 /* TxtFieldModifier.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,7 +530,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Enigma Messenger/Preview Content\"";
-				DEVELOPMENT_TEAM = 7Q54M9F3YT;
+				DEVELOPMENT_TEAM = MW9LW989JF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -451,7 +559,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Enigma Messenger/Preview Content\"";
-				DEVELOPMENT_TEAM = 7Q54M9F3YT;
+				DEVELOPMENT_TEAM = MW9LW989JF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
