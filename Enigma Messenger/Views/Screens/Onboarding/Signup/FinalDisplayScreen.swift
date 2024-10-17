@@ -7,7 +7,7 @@ struct FinalDisplayScreen: View {
     @State var showLoading = false
     
     var body: some View {
-        ZStack {
+        ZStack(alignment: .leading) {
             VStack(spacing: 24) {
                 Text("Name: Long Nguyen")
                     .font(.title3)
@@ -56,7 +56,7 @@ struct FinalDisplayScreen: View {
                         showAuthScr.toggle()
                     }
                 } label: {
-                    StandardBtnLbl(title: "Let's go")
+                    StandardBtnLbl(title: "Let's go", background: .blue)
                 }
                 .padding(.vertical)
             }
