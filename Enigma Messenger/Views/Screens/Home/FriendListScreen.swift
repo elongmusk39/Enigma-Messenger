@@ -10,20 +10,36 @@ import SwiftUI
 struct FriendListScreen: View {
     
     @Binding var showFriendList: Bool
+    @State var searchText: String = ""
     
     var body: some View {
         NavigationView {
-            ScrollView {
-                LazyVStack(spacing: 12) {
-                    FriendListCell(imgName: "a.circle.fill", name: "Alexander", color: .pink)
-                    Divider().padding(.horizontal)
-                    FriendListCell(imgName: "b.circle.fill", name: "Billy", color: .green)
-                    Divider().padding(.horizontal)
-                    FriendListCell(imgName: "c.circle.fill", name: "Cindy", color: .purple)
-                    Divider().padding(.horizontal)
-                    FriendListCell(imgName: "d.circle.fill", name: "Dom", color: .brown)
+            VStack {
+                HStack {
+                    Text("Suggested friends:")
+                        .font(.subheadline)
+                        .fontWeight(.medium)
+                        .foregroundStyle(.gray)
+                    
+                    Spacer()
                 }
-                .padding(.top, 8) //not hug the tabBar
+                .padding()
+                
+                ScrollView {
+                    LazyVStack(spacing: 12) {
+                        FriendListCell(imgName: "a.circle.fill", name: "Alexander", color: .pink)
+                        Divider().padding(.horizontal)
+                        
+                        FriendListCell(imgName: "b.circle.fill", name: "Billy", color: .green)
+                        Divider().padding(.horizontal)
+                        
+                        FriendListCell(imgName: "c.circle.fill", name: "Cindy", color: .purple)
+                        Divider().padding(.horizontal)
+                        
+                        FriendListCell(imgName: "d.circle.fill", name: "Dom", color: .brown)
+                    }
+                    .padding(.top, 8) //not hug the tabBar
+                }
             }
             .navigationTitle("Friend List")
             .navigationBarTitleDisplayMode(.inline)
@@ -40,6 +56,7 @@ struct FriendListScreen: View {
                 }
             }
         }
+        .searchable(text: $searchText)
     }
 }
 

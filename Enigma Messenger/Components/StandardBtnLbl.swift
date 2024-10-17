@@ -10,6 +10,7 @@ import SwiftUI
 struct StandardBtnLbl: View {
     
     var title: String
+    var background: Color
     
     var body: some View {
         Text(title)
@@ -17,11 +18,11 @@ struct StandardBtnLbl: View {
             .fontWeight(.semibold)
             .foregroundStyle(.white)
             .frame(width: 360, height: 44)
-            .background(Color(.systemBlue))
+            .background(background)
             .clipShape(.buttonBorder)
     }
 }
 
 #Preview {
-    StandardBtnLbl(title: "ahha")
+    StandardBtnLbl(title: "ahha", background: .blue)
 }
