@@ -3,9 +3,7 @@
 import SwiftUI
 
 struct WelcomeScreen: View {
-    
-    @Binding var showAuthScr: Bool
-    
+        
     var body: some View {
         NavigationView {
             VStack {
@@ -51,7 +49,7 @@ struct WelcomeScreen: View {
                 Divider()
                 
                 NavigationLink {
-                    EnterNameScreen(showAuthScr: $showAuthScr)
+                    EnterNameScreen()
                 } label: {
                     StandardBtnLbl(title: "Sign Up", background: .black)
                         .padding(.bottom)
@@ -65,5 +63,5 @@ struct WelcomeScreen: View {
 }
 
 #Preview {
-    WelcomeScreen(showAuthScr: .constant(false))
+    WelcomeScreen()
 }

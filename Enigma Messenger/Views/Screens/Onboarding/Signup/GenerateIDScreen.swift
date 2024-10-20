@@ -3,7 +3,7 @@ import SwiftUI
 
 struct GenerateIDScreen: View {
     
-    @Binding var showAuthScr: Bool
+    @Binding var user: User
     
     var body: some View {
         VStack {
@@ -12,7 +12,7 @@ struct GenerateIDScreen: View {
                 .fontWeight(.bold)
                 .padding(.vertical)
             
-            Text("AI23vC$#%*fhGesFdJKfWh$!@*kd")
+            Text(user.ID)
                 .font(.title3)
                 .fontWeight(.regular)
                 .foregroundStyle(.black)
@@ -30,7 +30,7 @@ struct GenerateIDScreen: View {
                 .foregroundStyle(.gray)
                         
             NavigationLink(destination: {
-                EnterPINScreen(showAuthScr: $showAuthScr)
+                EnterPINScreen(user: $user)
             }, label: {
                 StandardBtnLbl(title: "Next", background: .blue)
             })
@@ -42,8 +42,14 @@ struct GenerateIDScreen: View {
         .navigationBarTitleDisplayMode(.inline)
         .padding(.horizontal)
     }
+    
+    //MARK: - Function
+    
+    private func generateID() {
+        user.ID = "AI23vC$#%*fhGesFdJKfWh$!@*kd"
+    }
 }
 
 #Preview {
-    GenerateIDScreen(showAuthScr: .constant(false))
+    GenerateIDScreen(user: .constant(User.initUser))
 }

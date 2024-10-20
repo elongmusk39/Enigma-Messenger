@@ -3,10 +3,8 @@
 import SwiftUI
 
 struct EnterNameScreen: View {
-    
-    @Binding var showAuthScr: Bool
-    
-    @State var name: String = ""
+        
+    @State var user = User.emptyUser
     @FocusState private var keyboardFocused: Bool //keyboard popup
     
     var body: some View {
@@ -22,7 +20,7 @@ struct EnterNameScreen: View {
                 .padding(.horizontal, 24)
             
             //userInput is store in viewModel.email
-            TextField("Name", text: $name)
+            TextField("Name", text: $user.uniqueName)
                 .textInputAutocapitalization(.never)
                 .modifier(TxtFieldModifier())
                 .focused($keyboardFocused)
@@ -33,11 +31,12 @@ struct EnterNameScreen: View {
                 }
                         
             NavigationLink(destination: {
-                GenerateIDScreen(showAuthScr: $showAuthScr)
+                GenerateIDScreen(user: $user)
             }, label: {
-                StandardBtnLbl(title: "Next", background: .blue)
+                StandardBtnLbl(title: "Next", background: user.uniqueName.isEmpty ? .gray : .blue)
             })
             .padding(.vertical)
+            .disabled(user.uniqueName.isEmpty)
             
             Spacer()
 
@@ -48,5 +47,5 @@ struct EnterNameScreen: View {
 }
 
 #Preview {
-    EnterNameScreen(showAuthScr: .constant(false))
+    EnterNameScreen()
 }

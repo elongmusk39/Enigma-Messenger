@@ -2,10 +2,8 @@
 import SwiftUI
 
 struct EnterPINScreen: View {
-    
-    @Binding var showAuthScr: Bool
-    
-    @State var PIN: String = ""
+        
+    @Binding var user: User
     @FocusState private var keyboardFocused: Bool //keyboard
     
     var body: some View {
@@ -21,7 +19,7 @@ struct EnterPINScreen: View {
                 .padding(.horizontal, 24)
             
             //userInput is store in viewModel.email
-            TextField("Enter a 6-digit PIN", text: $PIN)
+            TextField("Enter a 6-digit PIN", text: $user.PIN)
                 .textInputAutocapitalization(.never)
                 .modifier(TxtFieldModifier())
                 .keyboardType(.numberPad)
@@ -33,11 +31,12 @@ struct EnterPINScreen: View {
                 }
             
             NavigationLink(destination: {
-                FinalDisplayScreen(showAuthScr: $showAuthScr)
+                FinalDisplayScreen(user: $user)
             }, label: {
-                StandardBtnLbl(title: "Next", background: .blue)
+                StandardBtnLbl(title: "Next", background: user.PIN.isEmpty ? .gray : .blue)
             })
             .padding(.vertical)
+            .disabled(user.PIN.isEmpty)
             
             Spacer()
 
@@ -48,5 +47,5 @@ struct EnterPINScreen: View {
 }
 
 #Preview {
-    EnterPINScreen(showAuthScr: .constant(false))
+    EnterPINScreen(user: .constant(User.initUser))
 }

@@ -9,11 +9,10 @@ import SwiftUI
 
 struct LoginScreen: View {
     
-    @State var name: String = ""
+    @State var uniqueName: String = ""
     @State var PIN: String = ""
     @State var ID: String = ""
     @FocusState private var keyboardFocused: Bool //keyboard popup
-    
     
     var body: some View {
         VStack {
@@ -24,7 +23,7 @@ struct LoginScreen: View {
                 .padding()
                 .padding(.top)
             
-            TextField("Name", text: $name)
+            TextField("Name", text: $uniqueName)
                 .textInputAutocapitalization(.never)
                 .modifier(TxtFieldModifier())
                 .focused($keyboardFocused)
@@ -76,7 +75,7 @@ struct LoginScreen: View {
     //MARK: - Function
     
     private func btnIsValid() -> Bool {
-        return !name.isEmpty && !PIN.isEmpty || !ID.isEmpty
+        return !uniqueName.isEmpty && !PIN.isEmpty || !ID.isEmpty
     }
 }
 
