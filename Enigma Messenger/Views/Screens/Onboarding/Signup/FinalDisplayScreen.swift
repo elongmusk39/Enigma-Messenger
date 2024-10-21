@@ -5,7 +5,9 @@ struct FinalDisplayScreen: View {
     
     @Binding var isLoggedIn: Bool
     @Binding var user: User
+    
     @State var showLoading = false
+    @State var showAlert = false
     
     var body: some View {
         ZStack(alignment: .leading) {
@@ -34,6 +36,11 @@ struct FinalDisplayScreen: View {
         }
         .navigationTitle("Your Information")
         .navigationBarTitleDisplayMode(.inline)
+        .alert("Duplicated!", isPresented: $showAlert) {
+            Button("OK", role: .cancel, action: {})
+        } message: {
+            Text("This name is already taken. Please choose a different name.")
+        }
     }
     
 //MARK: Function -------------------------------------------
@@ -42,11 +49,19 @@ struct FinalDisplayScreen: View {
         showLoading = true
         
         try? await Task.sleep(nanoseconds: 0_100_000_000)//delay
-        await AuthServices.shared.signUpUser(user: user)
-        isLoggedIn = true
+        
+        let yesDupl = await AuthServices.shared.didFindDuplName(uniqueName: user.uniqueName)
+        if yesDupl {
+            showAlert.toggle()
+        } else {
+            await AuthServices.shared.signUpUser(user: user)
+            isLoggedIn = true
+        }
         
         showLoading = false
     }
+    
+    
 }
 
 #Preview {

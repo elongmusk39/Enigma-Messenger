@@ -9,6 +9,8 @@ import Foundation
 import FirebaseAuth
 import Firebase
 
+let DB_USER = Firestore.firestore().collection("users")
+
 struct AuthServices {
     
     static let shared = AuthServices()
@@ -40,4 +42,19 @@ struct AuthServices {
         try? Auth.auth().signOut()
         print("DEBUG: user just logged out")
     }
+    
+    //MARK: ----------------------------------------
+    
+    func didFindDuplName(uniqueName: String) async -> Bool {
+        var result = false
+        do {
+            let query = try await DB_USER.whereField("uniqueName", isEqualTo: uniqueName).getDocuments()
+            result = query.count != 0
+        } catch {
+            print("DEBUG: err AuthServices \(error.localizedDescription)")
+        }
+        
+        return result
+    }
+    
 }
