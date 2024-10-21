@@ -6,11 +6,15 @@
 //
 
 import SwiftUI
+import FirebaseAuth
+import Firebase
 
 struct HomeScreen: View {
     
+    @Binding var isLoggedIn: Bool
     @State var showFriendList: Bool = false
     @State var searchText: String = ""
+    @State var user: User = User.initUser
     
     var body: some View {
         NavigationStack {
@@ -28,15 +32,18 @@ struct HomeScreen: View {
             }
             .navigationTitle("Home")
             .navigationBarTitleDisplayMode(.inline)
+            .onAppear {
+                //fetch user info
+            }
             .fullScreenCover(isPresented: $showFriendList, content: {
                 FriendListScreen(showFriendList: $showFriendList)
             })
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button {
-                        
+                        signOut()
                     } label: {
-                        Text("Edit")
+                        Text("Sign Out")
                             .font(.subheadline)
                             .fontWeight(.regular)
                     }
@@ -55,10 +62,24 @@ struct HomeScreen: View {
         }
         .searchable(text: $searchText)
     }
+    
+//MARK: Function -------------------------------------------
+    
+    private func fetchUserInfo() {
+        if let userEmail = Auth.auth().currentUser?.email {
+            //fetch
+        }
+    }
+    
+    private func signOut() {
+        AuthServices.shared.signOut()
+        isLoggedIn = false
+    }
+    
 }
 
 #Preview {
-    HomeScreen()
+    HomeScreen(isLoggedIn: .constant(true))
 }
 
 //MARK: ------------------------------------------------

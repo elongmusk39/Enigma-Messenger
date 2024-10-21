@@ -4,6 +4,8 @@ import SwiftUI
 
 struct WelcomeScreen: View {
         
+    @Binding var isLoggedIn: Bool
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -41,7 +43,7 @@ struct WelcomeScreen: View {
                 Spacer()
                 
                 NavigationLink {
-                    LoginScreen()
+                    LoginScreen(isLoggedIn: $isLoggedIn)
                 } label: {
                     StandardBtnLbl(title: "Log In", background: .blue)
                 }
@@ -49,7 +51,7 @@ struct WelcomeScreen: View {
                 Divider()
                 
                 NavigationLink {
-                    EnterNameScreen()
+                    EnterNameScreen(isLoggedIn: $isLoggedIn)
                 } label: {
                     StandardBtnLbl(title: "Sign Up", background: .black)
                         .padding(.bottom)
@@ -63,5 +65,5 @@ struct WelcomeScreen: View {
 }
 
 #Preview {
-    WelcomeScreen()
+    WelcomeScreen(isLoggedIn: .constant(false))
 }

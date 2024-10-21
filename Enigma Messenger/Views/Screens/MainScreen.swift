@@ -12,24 +12,31 @@ struct MainScreen: View {
     var userID: String?
     @State var isLoggedIn: Bool = false
     
-    init() {
-        self.isLoggedIn = didLogin()
-    }
+//    init() {
+//        self.isLoggedIn = didLogin()
+//    }
     
 //-----------------------------------------
     
     var body: some View {
-        if isLoggedIn {
-            WelcomeScreen()
-        } else {
-            TabScreen()
+        ZStack {
+            if isLoggedIn {
+                TabScreen(isLoggedIn: $isLoggedIn)
+            } else {
+                WelcomeScreen(isLoggedIn: $isLoggedIn)
+            }
+        }
+        .onAppear {
+            isLoggedIn = didLogin()
         }
     }
     
     private func didLogin() -> Bool {
-        if let userEmail = Auth.auth().currentUser?.email {
+        if let email = Auth.auth().currentUser?.email {
+            print("DEBUG: email is \(email)")
             return true
         } else {
+            print("DEBUG: no user logged in")
             return false
         }
     }
@@ -43,9 +50,11 @@ struct MainScreen: View {
 
 struct TabScreen: View {
     
+    @Binding var isLoggedIn: Bool
+    
     var body: some View {
         TabView {
-            HomeScreen()
+            HomeScreen(isLoggedIn: $isLoggedIn)
                 .tabItem {
                     Label("Home", systemImage: "house")
                 }

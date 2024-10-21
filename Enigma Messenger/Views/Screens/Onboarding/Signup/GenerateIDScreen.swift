@@ -3,6 +3,7 @@ import SwiftUI
 
 struct GenerateIDScreen: View {
     
+    @Binding var isLoggedIn: Bool
     @Binding var user: User
     
     var body: some View {
@@ -30,7 +31,7 @@ struct GenerateIDScreen: View {
                 .foregroundStyle(.gray)
                         
             NavigationLink(destination: {
-                EnterPINScreen(user: $user)
+                EnterPINScreen(isLoggedIn: $isLoggedIn, user: $user)
             }, label: {
                 StandardBtnLbl(title: "Next", background: .blue)
             })
@@ -41,15 +42,32 @@ struct GenerateIDScreen: View {
         .navigationTitle("Unique ID")
         .navigationBarTitleDisplayMode(.inline)
         .padding(.horizontal)
+        .onAppear {
+            user.ID = generateID()
+            user.email = generateEmail()
+        }
     }
     
     //MARK: - Function
     
-    private func generateID() {
-        user.ID = "AI23vC$#%*fhGesFdJKfWh$!@*kd"
+    private func generateID() -> String {
+        let randStr = randomString(length: 7)
+        let randInt = Int.random(in: 1..<10000000)
+        return "ID_\(randInt)_\(randStr)"
+    }
+    
+    private func generateEmail() -> String {
+        let randStr = randomString(length: 7)
+        let randInt = Int.random(in: 1..<10000000)
+        return "MAIL_\(randInt)_\(randStr)@gmail.com"
+    }
+    
+    private func randomString(length: Int) -> String {
+        let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789" //length = 62
+        return String((0..<length).map{ _ in letters.randomElement()! })
     }
 }
 
 #Preview {
-    GenerateIDScreen(user: .constant(User.initUser))
+    GenerateIDScreen(isLoggedIn: .constant(false), user: .constant(User.initUser))
 }

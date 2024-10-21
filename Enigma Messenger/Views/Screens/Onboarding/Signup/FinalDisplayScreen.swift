@@ -3,6 +3,7 @@ import SwiftUI
 
 struct FinalDisplayScreen: View {
     
+    @Binding var isLoggedIn: Bool
     @Binding var user: User
     @State var showLoading = false
     
@@ -10,7 +11,7 @@ struct FinalDisplayScreen: View {
         ZStack(alignment: .leading) {
             VStack(spacing: 24) {
                 
-                infoLabel(context: "Name", user: user)
+                infoLabel(context: "uniqueName", user: user)
                 infoLabel(context: "ID", user: user)
                 infoLabel(context: "PIN", user: user)
                 
@@ -18,10 +19,7 @@ struct FinalDisplayScreen: View {
                 
                 Button {
                     Task {
-                        showLoading = true
-                        try? await Task.sleep(nanoseconds: 0_100_000_000)
-                        
-                        showLoading = false
+                        await signUpUser()
                     }
                 } label: {
                     StandardBtnLbl(title: "Let's go", background: .blue)
@@ -37,13 +35,25 @@ struct FinalDisplayScreen: View {
         .navigationTitle("Your Information")
         .navigationBarTitleDisplayMode(.inline)
     }
+    
+//MARK: Function -------------------------------------------
+    
+    private func signUpUser() async {
+        showLoading = true
+        
+        try? await Task.sleep(nanoseconds: 0_100_000_000)//delay
+        await AuthServices.shared.signUpUser(user: user)
+        isLoggedIn = true
+        
+        showLoading = false
+    }
 }
 
 #Preview {
-    FinalDisplayScreen(user: .constant(User.initUser))
+    FinalDisplayScreen(isLoggedIn: .constant(false), user: .constant(User.initUser))
 }
 
-//-------------------------------------------
+//MARK: -------------------------------------------
 
 struct infoLabel: View {
     
@@ -51,7 +61,7 @@ struct infoLabel: View {
     var user: User
     
     var body: some View {
-        Text("\(context): \(user.PIN)")
+        Text("\(context): \(configContext())")
             .font(.title3)
             .fontWeight(.regular)
             .foregroundStyle(.black)
@@ -62,5 +72,17 @@ struct infoLabel: View {
                     .foregroundStyle(Color(.systemGray4))
                     .shadow(color: .black.opacity(0.4), radius: 2)
             })
+    }
+    
+    private func configContext() -> String {
+        if context == "uniqueName" {
+            return user.uniqueName
+        } else if context == "ID" {
+            return user.ID
+        } else if context == "PIN" {
+            return user.PIN
+        } else {
+            return "nil"
+        }
     }
 }

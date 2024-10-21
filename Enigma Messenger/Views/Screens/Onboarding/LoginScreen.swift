@@ -9,6 +9,8 @@ import SwiftUI
 
 struct LoginScreen: View {
     
+    @Binding var isLoggedIn: Bool
+    
     @State var uniqueName: String = ""
     @State var PIN: String = ""
     @State var ID: String = ""
@@ -63,6 +65,7 @@ struct LoginScreen: View {
             
             Button {
                 //login
+                isLoggedIn = true
             } label: {
                 StandardBtnLbl(title: "Login", background: btnIsValid() ? .blue : .gray)
                     .padding()
@@ -80,5 +83,5 @@ struct LoginScreen: View {
 }
 
 #Preview {
-    LoginScreen()
+    LoginScreen(isLoggedIn: .constant(false))
 }

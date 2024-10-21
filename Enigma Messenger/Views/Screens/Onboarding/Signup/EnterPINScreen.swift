@@ -3,6 +3,7 @@ import SwiftUI
 
 struct EnterPINScreen: View {
         
+    @Binding var isLoggedIn: Bool
     @Binding var user: User
     @FocusState private var keyboardFocused: Bool //keyboard
     
@@ -31,7 +32,7 @@ struct EnterPINScreen: View {
                 }
             
             NavigationLink(destination: {
-                FinalDisplayScreen(user: $user)
+                FinalDisplayScreen(isLoggedIn: $isLoggedIn, user: $user)
             }, label: {
                 StandardBtnLbl(title: "Next", background: user.PIN.isEmpty ? .gray : .blue)
             })
@@ -47,5 +48,5 @@ struct EnterPINScreen: View {
 }
 
 #Preview {
-    EnterPINScreen(user: .constant(User.initUser))
+    EnterPINScreen(isLoggedIn: .constant(false), user: .constant(User.initUser))
 }

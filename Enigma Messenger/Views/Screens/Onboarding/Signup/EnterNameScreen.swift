@@ -4,12 +4,13 @@ import SwiftUI
 
 struct EnterNameScreen: View {
         
+    @Binding var isLoggedIn: Bool
     @State var user = User.emptyUser
     @FocusState private var keyboardFocused: Bool //keyboard popup
     
     var body: some View {
         VStack {
-            Text("What's your name?")
+            Text("What's your unique name?")
                 .font(.title2)
                 .fontWeight(.bold)
                 .padding(.top)
@@ -20,7 +21,7 @@ struct EnterNameScreen: View {
                 .padding(.horizontal, 24)
             
             //userInput is store in viewModel.email
-            TextField("Name", text: $user.uniqueName)
+            TextField("Unique Name", text: $user.uniqueName)
                 .textInputAutocapitalization(.never)
                 .modifier(TxtFieldModifier())
                 .focused($keyboardFocused)
@@ -31,7 +32,7 @@ struct EnterNameScreen: View {
                 }
                         
             NavigationLink(destination: {
-                GenerateIDScreen(user: $user)
+                GenerateIDScreen(isLoggedIn: $isLoggedIn, user: $user)
             }, label: {
                 StandardBtnLbl(title: "Next", background: user.uniqueName.isEmpty ? .gray : .blue)
             })
@@ -47,5 +48,5 @@ struct EnterNameScreen: View {
 }
 
 #Preview {
-    EnterNameScreen()
+    EnterNameScreen(isLoggedIn: .constant(false))
 }
