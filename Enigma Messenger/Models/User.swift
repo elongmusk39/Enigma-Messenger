@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct User {
+struct User: Hashable, Codable { //for fetching
     var uniqueName: String
     var PIN: String
     var ID: String

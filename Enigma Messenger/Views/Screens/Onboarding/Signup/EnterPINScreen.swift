@@ -34,10 +34,10 @@ struct EnterPINScreen: View {
             NavigationLink(destination: {
                 FinalDisplayScreen(isLoggedIn: $isLoggedIn, user: $user)
             }, label: {
-                StandardBtnLbl(title: "Next", background: user.PIN.isEmpty ? .gray : .blue)
+                StandardBtnLbl(title: "Next", background: user.PIN.count != 6 ? .gray : .blue)
             })
             .padding(.vertical)
-            .disabled(user.PIN.isEmpty)
+            .disabled(user.PIN.count != 6)
             
             Spacer()
 
@@ -45,6 +45,7 @@ struct EnterPINScreen: View {
         .navigationTitle("Name")
         .navigationBarTitleDisplayMode(.inline)
     }
+    
 }
 
 #Preview {

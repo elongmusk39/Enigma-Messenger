@@ -65,7 +65,10 @@ struct LoginScreen: View {
             
             Button {
                 //login
-                isLoggedIn = true
+                Task {
+                    await loginRegular()
+                    isLoggedIn = true
+                }
             } label: {
                 StandardBtnLbl(title: "Login", background: btnIsValid() ? .blue : .gray)
                     .padding()
@@ -80,6 +83,12 @@ struct LoginScreen: View {
     private func btnIsValid() -> Bool {
         return !uniqueName.isEmpty && !PIN.isEmpty || !ID.isEmpty
     }
+    
+    private func loginRegular() async {
+        let mail = "\(uniqueName)@gmail.com"
+        await AuthServices.shared.loginRegular(withEmail: mail, password: PIN)
+    }
+    
 }
 
 #Preview {

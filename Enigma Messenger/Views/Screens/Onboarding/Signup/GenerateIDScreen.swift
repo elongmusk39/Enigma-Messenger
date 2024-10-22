@@ -44,7 +44,7 @@ struct GenerateIDScreen: View {
         .padding(.horizontal)
         .onAppear {
             user.ID = generateID()
-            user.email = generateEmail()
+            user.email = "\(user.uniqueName)@gmail.com"
         }
     }
     
@@ -54,12 +54,6 @@ struct GenerateIDScreen: View {
         let randStr = randomString(length: 7)
         let randInt = Int.random(in: 1..<10000000)
         return "ID_\(randInt)_\(randStr)"
-    }
-    
-    private func generateEmail() -> String {
-        let randStr = randomString(length: 7)
-        let randInt = Int.random(in: 1..<10000000)
-        return "MAIL_\(randInt)_\(randStr)@gmail.com"
     }
     
     private func randomString(length: Int) -> String {

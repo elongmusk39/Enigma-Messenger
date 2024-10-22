@@ -34,6 +34,10 @@ struct HomeScreen: View {
             .navigationBarTitleDisplayMode(.inline)
             .onAppear {
                 //fetch user info
+                print("DEBUG: HomeScr appear")
+                Task {
+                    await fetchUserInfo()
+                }
             }
             .fullScreenCover(isPresented: $showFriendList, content: {
                 FriendListScreen(showFriendList: $showFriendList)
@@ -65,10 +69,14 @@ struct HomeScreen: View {
     
 //MARK: Function -------------------------------------------
     
-    private func fetchUserInfo() {
-        if let userEmail = Auth.auth().currentUser?.email {
-            //fetch
+    private func fetchUserInfo() async {
+        do {
+            user = try await AuthServices.shared.loadUserData()
+            print("DEBUG: current user is \(user)")
+        } catch {
+            print("DEBUG: err")
         }
+        
     }
     
     private func signOut() {
