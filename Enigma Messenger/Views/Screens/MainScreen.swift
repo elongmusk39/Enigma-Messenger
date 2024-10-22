@@ -64,7 +64,7 @@ struct TabScreen: View {
                     Label("Status", systemImage: "circle.dashed")
                 }
             
-            SettingScreen()
+            SettingScreen(isLoggedIn: $isLoggedIn)
                 .tabItem {
                     Label("Setting", systemImage: "gear")
                 }

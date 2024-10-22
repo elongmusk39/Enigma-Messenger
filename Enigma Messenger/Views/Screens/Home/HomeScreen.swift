@@ -20,17 +20,17 @@ struct HomeScreen: View {
         NavigationStack {
             ScrollView {
                 LazyVStack(spacing: 16) {
-                    ConversationCell(imgName: "a.circle.fill", messStatusStr: "bubble", messStr: "Received", name: "Alexander", color: .pink)
+                    ConversationCell(imgName: "a.circle.fill", messStatusStr: "bubble", messStr: "Received", name: "MockUser A", color: .pink)
                     Divider().padding(.horizontal)
-                    ConversationCell(imgName: "b.circle.fill", messStatusStr: "paperplane", messStr: "Read", name: "Billy", color: .green)
+                    ConversationCell(imgName: "b.circle.fill", messStatusStr: "paperplane", messStr: "Read", name: "MockUser B", color: .green)
                     Divider().padding(.horizontal)
-                    ConversationCell(imgName: "c.circle.fill", messStatusStr: "paperplane.fill", messStr: "Sent", name: "Cindy", color: .purple)
+                    ConversationCell(imgName: "c.circle.fill", messStatusStr: "paperplane.fill", messStr: "Sent", name: "MockUser C", color: .purple)
                     Divider().padding(.horizontal)
-                    ConversationCell(imgName: "d.circle.fill", messStatusStr: "paperplane.fill", messStr: "Sent", name: "Dom", color: .brown)
+                    ConversationCell(imgName: "d.circle.fill", messStatusStr: "paperplane.fill", messStr: "Sent", name: "MockUser D", color: .brown)
                 }
                 .padding(.top, 8) //not hug the tabBar
             }
-            .navigationTitle("Home")
+            .navigationTitle(user.uniqueName)
             .navigationBarTitleDisplayMode(.inline)
             .onAppear {
                 //fetch user info
@@ -45,9 +45,9 @@ struct HomeScreen: View {
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button {
-                        signOut()
+                        //edit
                     } label: {
-                        Text("Sign Out")
+                        Text("Edit")
                             .font(.subheadline)
                             .fontWeight(.regular)
                     }
@@ -70,18 +70,8 @@ struct HomeScreen: View {
 //MARK: Function -------------------------------------------
     
     private func fetchUserInfo() async {
-        do {
-            user = try await AuthServices.shared.loadUserData()
-            print("DEBUG: current user is \(user)")
-        } catch {
-            print("DEBUG: err")
-        }
-        
-    }
-    
-    private func signOut() {
-        AuthServices.shared.signOut()
-        isLoggedIn = false
+        user = await AuthServices.shared.loadUserData()
+        print("DEBUG: current user is \(user)")
     }
     
 }

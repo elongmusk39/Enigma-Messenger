@@ -20,7 +20,7 @@ class AuthServices {
     @MainActor
     func signUpUser(user: User) async {
         do {
-            try await Auth.auth().createUser(withEmail: user.email, password: user.PIN)
+            try await Auth.auth().createUser(withEmail: user.email.lowercased(), password: user.PIN)
             await uploadUserData(user: user)
             print("DEBUG: just done signing up user.")
             
@@ -34,7 +34,7 @@ class AuthServices {
             "uniqueName": user.uniqueName,
             "PIN": user.PIN,
             "ID": user.ID,
-            "email": user.email
+            "email": user.email.lowercased()
         ]
         try? await Firestore.firestore().collection("users").document(user.email).setData(docData)
     }
@@ -46,6 +46,33 @@ class AuthServices {
         } catch {
             print("DEBUG: login error \(error.localizedDescription)")
         }
+    }
+    
+    @MainActor
+    func loginWithID(withID ID: String) async {
+        let user = await fetchUserInfoByID(ID: ID)
+        await loginRegular(withEmail: user.email, password: user.PIN)
+    }
+    
+    private func fetchUserInfoByID(ID: String) async -> User {
+        var user = User.emptyUser
+        do {
+            let queryArr = try await DB_USER.whereField("ID", isEqualTo: ID).getDocuments()
+            for doc in queryArr.documents { //only 1 item
+                if let name = doc.get("uniqueName") as? String,
+                   let email = doc.get("email") as? String,
+                   let pin = doc.get("PIN") as? String {
+                    user = User(uniqueName: name, PIN: pin, ID: ID, email: email)
+                } else {
+                    print("DEBUG: cannot get user ID")
+                }
+            }
+            
+        } catch {
+            print("DEBUG: err featching user data,  \(error.localizedDescription)")
+        }
+        
+        return user
     }
     
     func signOut() {
@@ -65,24 +92,13 @@ class AuthServices {
         
         do {
             let snapshot = try await DB_USER.document(userEmail).getDocument()
-//            if let name = snapshot.get("uniqueName") as? String,
-//               let id = snapshot.get("ID") as? String,
-//               let pin = snapshot.get("PIN") as? String {
-//                user = User(uniqueName: name, PIN: pin, ID: id, email: userEmail)
-//            } else {
-//                print("DEBUG: cannot get user data")
-//            }
-            
-            DB_USER.document(userEmail).getDocument { snap, err in
-                if let doc = snap {
-                    let name = doc.get("uniqueName") as? String
-                    print("DEBUG: name is \(name ?? "nil")")
-                } else {
-                    print("DEBUG: damn")
-                }
+            if let name = snapshot.get("uniqueName") as? String,
+               let id = snapshot.get("ID") as? String,
+               let pin = snapshot.get("PIN") as? String {
+                user = User(uniqueName: name, PIN: pin, ID: id, email: userEmail)
+            } else {
+                print("DEBUG: cannot get user data")
             }
-            
-            
         } catch {
             print("DEBUG: err featching user data,  \(error.localizedDescription)")
         }

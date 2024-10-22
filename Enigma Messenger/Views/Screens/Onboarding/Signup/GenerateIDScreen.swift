@@ -44,7 +44,7 @@ struct GenerateIDScreen: View {
         .padding(.horizontal)
         .onAppear {
             user.ID = generateID()
-            user.email = "\(user.uniqueName)@gmail.com"
+            user.email = "\(user.uniqueName.lowercased())@gmail.com"
         }
     }
     

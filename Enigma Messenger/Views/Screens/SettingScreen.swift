@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct SettingScreen: View {
+    
+    @Binding var isLoggedIn: Bool
+    
     var body: some View {
         NavigationView {
             List {
@@ -66,7 +69,7 @@ struct SettingScreen: View {
                 }
                 
                 Button {
-                    
+                    signOut()
                 } label: {
                     Text("Logout")
                         .font(.headline)
@@ -102,10 +105,17 @@ struct SettingScreen: View {
         }
         
     }
+    
+//MARK: Function ------------------------------------------
+    
+    private func signOut() {
+        AuthServices.shared.signOut()
+        isLoggedIn = false
+    }
 }
 
 #Preview {
-    SettingScreen()
+    SettingScreen(isLoggedIn: .constant(true))
 }
 
 //MARK: ---------------------------------------------
