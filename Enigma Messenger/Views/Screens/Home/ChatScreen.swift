@@ -8,8 +8,18 @@
 import SwiftUI
 
 struct ChatScreen: View {
+    
+    var chatter: User = User.emptyUser
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Text("Hello, this is your chat screen with \(chatter.uniqueName).")
+                .font(.headline)
+                .fontWeight(.medium)
+                .foregroundStyle(.black)
+                .padding()
+        }
+        .navigationTitle(chatter.uniqueName)
     }
 }
 

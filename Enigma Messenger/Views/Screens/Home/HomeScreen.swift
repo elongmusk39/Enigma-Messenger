@@ -9,6 +9,8 @@ import SwiftUI
 import FirebaseAuth
 import Firebase
 
+var USER_LOADED: User = User.emptyUser
+
 struct HomeScreen: View {
     
     @Binding var isLoggedIn: Bool
@@ -71,6 +73,7 @@ struct HomeScreen: View {
     
     private func fetchUserInfo() async {
         user = await AuthServices.shared.loadUserData()
+        USER_LOADED = user
         print("DEBUG: current user is \(user)")
     }
     

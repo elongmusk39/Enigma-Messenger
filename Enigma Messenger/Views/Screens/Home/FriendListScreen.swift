@@ -11,6 +11,7 @@ struct FriendListScreen: View {
     
     @Binding var showFriendList: Bool
     @State var searchText: String = ""
+    @State var userArr: [User] = []
     
     var body: some View {
         NavigationView {
@@ -27,16 +28,15 @@ struct FriendListScreen: View {
                 
                 ScrollView {
                     LazyVStack(spacing: 12) {
-                        FriendListCell(imgName: "a.circle.fill", name: "Alexander", color: .pink)
-                        Divider().padding(.horizontal)
-                        
-                        FriendListCell(imgName: "b.circle.fill", name: "Billy", color: .green)
-                        Divider().padding(.horizontal)
-                        
-                        FriendListCell(imgName: "c.circle.fill", name: "Cindy", color: .purple)
-                        Divider().padding(.horizontal)
-                        
-                        FriendListCell(imgName: "d.circle.fill", name: "Dom", color: .brown)
+                        ForEach(userArr, id: \.self) { user in
+                            NavigationLink {
+                                ChatScreen(chatter: user)
+                            } label: {
+                                FriendListCell(imgName: "person.circle", name: user.uniqueName, color: .gray)
+                            }
+                                
+                            Divider().padding(.horizontal)
+                        }
                     }
                     .padding(.top, 8) //not hug the tabBar
                 }
@@ -44,6 +44,11 @@ struct FriendListScreen: View {
             .navigationTitle("Friend List")
             .navigationBarTitleDisplayMode(.inline)
             .tint(.black)
+            .onAppear {
+                Task {
+                    await fetchAllUsers()
+                }
+            }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
@@ -58,6 +63,13 @@ struct FriendListScreen: View {
         }
         .searchable(text: $searchText)
     }
+    
+//MARK: Function ----------------------------------
+    
+    private func fetchAllUsers() async {
+        userArr = await AuthServices.shared.fetchAllUsers()
+    }
+    
 }
 
 #Preview {

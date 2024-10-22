@@ -125,7 +125,7 @@ struct ProfileHeaderView: View {
     
     var body: some View {
         HStack {
-            Image(systemName: "l.circle.fill")
+            Image(systemName: "person.circle")
                 .resizable()
                 .frame(width: 80, height: 80)
                 .foregroundStyle(.indigo)
@@ -133,7 +133,7 @@ struct ProfileHeaderView: View {
                 .padding()
             
             VStack(alignment: .leading, spacing: 8) {
-                Text("Long Nguyen")
+                Text(USER_LOADED.uniqueName)
                     .font(.headline)
                     .fontWeight(.medium)
                     .foregroundStyle(.black)

@@ -77,6 +77,7 @@ class AuthServices {
     
     func signOut() {
         try? Auth.auth().signOut()
+        USER_LOADED = User.emptyUser
         print("DEBUG: user just logged out")
     }
     
@@ -105,21 +106,6 @@ class AuthServices {
         return user
     }
     
-//    func getUserInfo(getUserID userID: String, handler: @escaping(_ name: String?, _ bio: String?) -> ()) {
-//        REF_USERS.document(userID).getDocument { snapshot, error in
-//            if let doc = snapshot,
-//                let name = doc.get(databaseUserField.displayName) as? String,
-//               let bio = doc.get(databaseUserField.bio) as? String {
-//                print("DEBUG: success getting user info")
-//                handler(name, bio)
-//                return
-//            } else {
-//                print("DEBUG: error fetching user")
-//                handler(nil, nil)
-//                return
-//            }
-//        }
-//    }
     
     func didFindDuplName(uniqueName: String) async -> Bool {
         var result = false
@@ -132,5 +118,29 @@ class AuthServices {
         
         return result
     }
+    
+    func fetchAllUsers() async -> [User] {
+        var userArr: [User] = []
+        do {
+            let queryArr = try await DB_USER.getDocuments()
+            for doc in queryArr.documents {
+                if let name = doc.get("uniqueName") as? String,
+                   let id = doc.get("ID") as? String,
+                   let email = doc.get("email") as? String,
+                   let pin = doc.get("PIN") as? String {
+                    userArr.append(User(uniqueName: name, PIN: pin, ID: id, email: email))
+                } else {
+                    print("DEBUG: cannot get user ID")
+                }
+            }
+            
+        } catch {
+            print("DEBUG: err featching user data,  \(error.localizedDescription)")
+        }
+        
+        return userArr
+    }
+    
+    
     
 }
