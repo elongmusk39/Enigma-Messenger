@@ -140,7 +140,4 @@ class AuthServices {
         
         return userArr
     }
-    
-    
-    
 }

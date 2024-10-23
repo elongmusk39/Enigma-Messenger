@@ -19,10 +19,10 @@ struct StatusScreen: View {
         NavigationView {
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 8) {
-                    GridItemView(name: "Alexander", imgName: "a.circle.fill", status: "Active", color: .green, colorImg: .pink)
-                    GridItemView(name: "Billy", imgName: "b.circle.fill", status: "Active", color: .green, colorImg: .green)
-                    GridItemView(name: "Cindy", imgName: "c.circle.fill", status: "Off", color: .gray, colorImg: .purple)
-                    GridItemView(name: "Dom", imgName: "d.circle.fill", status: "Deleted", color: .red, colorImg: .brown)
+                    GridItemView(name: "MockUser A", imgName: "a.circle.fill", status: "Active", color: .green, colorImg: .pink)
+                    GridItemView(name: "MockUser B", imgName: "b.circle.fill", status: "Active", color: .green, colorImg: .green)
+                    GridItemView(name: "MockUser C", imgName: "c.circle.fill", status: "Off", color: .gray, colorImg: .purple)
+                    GridItemView(name: "MockUser D", imgName: "d.circle.fill", status: "Deleted", color: .red, colorImg: .brown)
                 }
             }
             .padding(.horizontal)

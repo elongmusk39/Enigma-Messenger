@@ -17,6 +17,7 @@ struct LoginScreen: View {
     
     @FocusState private var keyboardFocused: Bool //keyboard popup
     @State var showLoading = false
+    @State var showAlert = false
     
     var body: some View {
         ZStack {
@@ -92,6 +93,11 @@ struct LoginScreen: View {
             }
         }
         .navigationTitle("Welcome back!")
+        .alert("Error Login!", isPresented: $showAlert) {
+            Button("OK", role: .cancel, action: {})
+        } message: {
+            Text("There is a problem logging in.")
+        }
     }
     
     //MARK: - Function

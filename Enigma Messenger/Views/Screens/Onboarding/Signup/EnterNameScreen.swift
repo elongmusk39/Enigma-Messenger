@@ -15,7 +15,7 @@ struct EnterNameScreen: View {
                 .fontWeight(.bold)
                 .padding(.top)
             
-            Text("We will use this name to call you")
+            Text("Make sure there is no space. We will use this name to call you")
                 .font(.footnote)
                 .foregroundStyle(.gray)
                 .padding(.horizontal, 24)
