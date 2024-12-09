@@ -77,9 +77,6 @@ struct LoginScreen: View {
                         } else {
                             await loginWithID()
                         }
-                        
-                        showLoading = false
-                        isLoggedIn = true
                     }
                 } label: {
                     StandardBtnLbl(title: "Login", background: btnIsValid() ? .blue : .gray)
@@ -108,11 +105,25 @@ struct LoginScreen: View {
     
     private func loginRegular() async {
         let mail = "\(uniqueName)@gmail.com"
-        await AuthServices.shared.loginRegular(withEmail: mail, password: PIN)
+        do {
+            try await AuthServices.shared.loginRegular(withEmail: mail, password: PIN)
+            isLoggedIn = true
+        } catch {
+            print("DEBUG: err login with Credentials: \(error.localizedDescription)")
+            showAlert.toggle()
+        }
+        showLoading = false
     }
     
     private func loginWithID() async {
-        await AuthServices.shared.loginWithID(withID: ID)
+        do {
+            try await AuthServices.shared.loginWithID(withID: ID)
+            isLoggedIn = true
+        } catch {
+            print("DEBUG: err login ID: \(error.localizedDescription)")
+            showAlert.toggle()
+        }
+        showLoading = false
     }
     
 }

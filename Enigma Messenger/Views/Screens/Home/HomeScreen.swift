@@ -9,7 +9,7 @@ import SwiftUI
 import FirebaseAuth
 import Firebase
 
-var USER_LOADED: User = User.emptyUser
+var USER_LOADED: User = User.emptyUser //unversal var
 
 struct HomeScreen: View {
     
@@ -17,6 +17,8 @@ struct HomeScreen: View {
     @State var showFriendList: Bool = false
     @State var searchText: String = ""
     @State var user: User = User.initUser
+    
+    @State var converNameArr: [String] = []
     
     var body: some View {
         NavigationStack {
@@ -36,7 +38,6 @@ struct HomeScreen: View {
             .navigationBarTitleDisplayMode(.inline)
             .onAppear {
                 //fetch user info
-                print("DEBUG: HomeScr appear")
                 Task {
                     await fetchUserInfo()
                 }

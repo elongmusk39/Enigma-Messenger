@@ -37,8 +37,7 @@ struct WelcomeScreen: View {
                         .frame(width: 48, height: 56)
                         .foregroundStyle(.black)
                 }
-                .padding(.vertical)
-                .foregroundStyle(.blue)
+                .padding(.vertical, 32)
                 
                 Spacer()
                 

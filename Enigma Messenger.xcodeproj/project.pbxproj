@@ -35,6 +35,8 @@
 		3AAC75962BF37A83008DB1D4 /* CONSTANTS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAC75952BF37A83008DB1D4 /* CONSTANTS.swift */; };
 		3AAC75982BF37B91008DB1D4 /* FriendListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAC75972BF37B91008DB1D4 /* FriendListScreen.swift */; };
 		3ACC062A2CC782D800EC07A3 /* ChatScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ACC06292CC782D800EC07A3 /* ChatScreen.swift */; };
+		3AE8B5142D06D0D0008D6B7B /* TabScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE8B5132D06D0D0008D6B7B /* TabScreen.swift */; };
+		3AE8B5162D06D757008D6B7B /* ServiceFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE8B5152D06D757008D6B7B /* ServiceFetch.swift */; };
 		3AF4BA8D2BF3E1D600C9E605 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF4BA8C2BF3E1D600C9E605 /* LoadingView.swift */; };
 		3AF4BA8F2BF428DD00C9E605 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF4BA8E2BF428DD00C9E605 /* User.swift */; };
 		3AF4BA912BF428E500C9E605 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF4BA902BF428E500C9E605 /* Message.swift */; };
@@ -87,6 +89,8 @@
 		3AAC75952BF37A83008DB1D4 /* CONSTANTS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CONSTANTS.swift; sourceTree = "<group>"; };
 		3AAC75972BF37B91008DB1D4 /* FriendListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListScreen.swift; sourceTree = "<group>"; };
 		3ACC06292CC782D800EC07A3 /* ChatScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatScreen.swift; sourceTree = "<group>"; };
+		3AE8B5132D06D0D0008D6B7B /* TabScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabScreen.swift; sourceTree = "<group>"; };
+		3AE8B5152D06D757008D6B7B /* ServiceFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceFetch.swift; sourceTree = "<group>"; };
 		3AF4BA8C2BF3E1D600C9E605 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		3AF4BA8E2BF428DD00C9E605 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3AF4BA902BF428E500C9E605 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -140,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				3AA41EAD2CC4CBDB00D4E7BD /* AuthServices.swift */,
+				3AE8B5152D06D757008D6B7B /* ServiceFetch.swift */,
 			);
 			path = APIServices;
 			sourceTree = "<group>";
@@ -168,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				3AAC754B2BF36EDA008DB1D4 /* Enigma_MessengerApp.swift */,
+				3AAC75772BF36F43008DB1D4 /* MainScreen.swift */,
 				3AAC75882BF37116008DB1D4 /* Models */,
 				3AA41EAC2CC4CBB200D4E7BD /* APIServices */,
 				3AAC75892BF3711C008DB1D4 /* Views */,
@@ -209,7 +215,7 @@
 		3AAC75792BF36F46008DB1D4 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				3AAC75772BF36F43008DB1D4 /* MainScreen.swift */,
+				3AE8B5132D06D0D0008D6B7B /* TabScreen.swift */,
 				3AAC757B2BF36F73008DB1D4 /* Onboarding */,
 				3AAC757A2BF36F6D008DB1D4 /* Home */,
 				3AAC758D2BF371CD008DB1D4 /* StatusScreen.swift */,
@@ -426,7 +432,9 @@
 				3AF4BA8D2BF3E1D600C9E605 /* LoadingView.swift in Sources */,
 				3AAC757D2BF36F87008DB1D4 /* WelcomeScreen.swift in Sources */,
 				3AAC75782BF36F43008DB1D4 /* MainScreen.swift in Sources */,
+				3AE8B5142D06D0D0008D6B7B /* TabScreen.swift in Sources */,
 				3AAC75942BF376A6008DB1D4 /* StandardBtnLbl.swift in Sources */,
+				3AE8B5162D06D757008D6B7B /* ServiceFetch.swift in Sources */,
 				3ACC062A2CC782D800EC07A3 /* ChatScreen.swift in Sources */,
 				3AAC75812BF36FAF008DB1D4 /* EnterNameScreen.swift in Sources */,
 				3AAC758E2BF371CD008DB1D4 /* StatusScreen.swift in Sources */,

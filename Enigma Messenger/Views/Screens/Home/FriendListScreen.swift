@@ -67,7 +67,7 @@ struct FriendListScreen: View {
 //MARK: Function ----------------------------------
     
     private func fetchAllUsers() async {
-        userArr = await AuthServices.shared.fetchAllUsers()
+        userArr = await ServiceFetch.shared.fetchAllOtherUsers()
     }
     
 }

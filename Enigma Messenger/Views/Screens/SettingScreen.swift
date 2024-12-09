@@ -138,7 +138,7 @@ struct ProfileHeaderView: View {
                     .fontWeight(.medium)
                     .foregroundStyle(.black)
                 
-                Text("Pasionate iOS developer")
+                Text(USER_LOADED.email)
                     .font(.subheadline)
                     .fontWeight(.regular)
                     .foregroundStyle(.gray)

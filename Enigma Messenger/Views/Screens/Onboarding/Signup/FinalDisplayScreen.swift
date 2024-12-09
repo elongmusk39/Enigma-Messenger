@@ -11,11 +11,12 @@ struct FinalDisplayScreen: View {
     
     var body: some View {
         ZStack(alignment: .leading) {
-            VStack(spacing: 24) {
+            VStack(spacing: 20) {
                 
-                infoLabel(context: "uniqueName", user: user)
+                infoLabel(context: "Name", user: user)
+                    .padding(.top, 24)
                 infoLabel(context: "ID", user: user)
-                infoLabel(context: "PIN", user: user)
+                infoLabel(context: "PIN#", user: user)
                 
                 Spacer()
                 
@@ -76,25 +77,36 @@ struct infoLabel: View {
     var user: User
     
     var body: some View {
-        Text("\(context): \(configContext())")
-            .font(.title3)
-            .fontWeight(.regular)
-            .foregroundStyle(.black)
-            .padding()
-            .overlay(content: {
-                RoundedRectangle(cornerRadius: 8)
-                    .stroke(lineWidth: 0.5)
-                    .foregroundStyle(Color(.systemGray4))
-                    .shadow(color: .black.opacity(0.4), radius: 2)
-            })
+        HStack {
+            Text("\(context):")
+                .font(.title3)
+                .fontWeight(.bold)
+                .foregroundStyle(.black)
+                .padding(.horizontal)
+            
+            Text("\(configContext())")
+                .font(.title3)
+                .fontWeight(.medium)
+                .foregroundStyle(.gray)
+            
+            Spacer()
+        }
+        .frame(width: 360, height: 48)
+        .overlay(content: {
+            RoundedRectangle(cornerRadius: 8)
+                .stroke(lineWidth: 0.5)
+                .foregroundStyle(Color(.systemGray4))
+                .shadow(color: .black.opacity(0.4), radius: 2)
+        })
+            
     }
     
     private func configContext() -> String {
-        if context == "uniqueName" {
+        if context == "Name" {
             return user.uniqueName
         } else if context == "ID" {
             return user.ID
-        } else if context == "PIN" {
+        } else if context == "PIN#" {
             return user.PIN
         } else {
             return "nil"

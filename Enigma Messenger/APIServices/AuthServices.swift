@@ -15,7 +15,7 @@ class AuthServices {
     
     static let shared = AuthServices()
     @Published var currentUser: User? //for fetching user info
-
+    
     
     @MainActor
     func signUpUser(user: User) async {
@@ -40,18 +40,19 @@ class AuthServices {
     }
     
     @MainActor
-    func loginRegular(withEmail email: String, password: String) async {
-        do {
-            try await Auth.auth().signIn(withEmail: email, password: password)
-        } catch {
-            print("DEBUG: login error \(error.localizedDescription)")
-        }
+    func loginRegular(withEmail email: String, password: String) async throws {
+        try await Auth.auth().signIn(withEmail: email, password: password)
+//        do {
+//            try await Auth.auth().signIn(withEmail: email, password: password)
+//        } catch {
+//            print("DEBUG: login error \(error.localizedDescription)")
+//        }
     }
     
     @MainActor
-    func loginWithID(withID ID: String) async {
+    func loginWithID(withID ID: String) async throws {
         let user = await fetchUserInfoByID(ID: ID)
-        await loginRegular(withEmail: user.email, password: user.PIN)
+        try await loginRegular(withEmail: user.email, password: user.PIN)
     }
     
     private func fetchUserInfoByID(ID: String) async -> User {
@@ -119,25 +120,4 @@ class AuthServices {
         return result
     }
     
-    func fetchAllUsers() async -> [User] {
-        var userArr: [User] = []
-        do {
-            let queryArr = try await DB_USER.getDocuments()
-            for doc in queryArr.documents {
-                if let name = doc.get("uniqueName") as? String,
-                   let id = doc.get("ID") as? String,
-                   let email = doc.get("email") as? String,
-                   let pin = doc.get("PIN") as? String {
-                    userArr.append(User(uniqueName: name, PIN: pin, ID: id, email: email))
-                } else {
-                    print("DEBUG: cannot get user ID")
-                }
-            }
-            
-        } catch {
-            print("DEBUG: err featching user data,  \(error.localizedDescription)")
-        }
-        
-        return userArr
-    }
 }
