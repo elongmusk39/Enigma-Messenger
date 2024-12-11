@@ -21,7 +21,7 @@ struct MainScreen: View {
     var body: some View {
         ZStack {
             if isLoggedIn {
-                TabScreen(isLoggedIn: $isLoggedIn)
+                HomeScreen(isLoggedIn: $isLoggedIn)
             } else {
                 WelcomeScreen(isLoggedIn: $isLoggedIn)
             }

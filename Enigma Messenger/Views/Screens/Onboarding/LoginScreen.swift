@@ -104,7 +104,8 @@ struct LoginScreen: View {
     }
     
     private func loginRegular() async {
-        let mail = "\(uniqueName)@gmail.com"
+        let name = uniqueName.replacingOccurrences(of: " ", with: "").lowercased()
+        let mail = "\(name)@gmail.com"
         do {
             try await AuthServices.shared.loginRegular(withEmail: mail, password: PIN)
             isLoggedIn = true

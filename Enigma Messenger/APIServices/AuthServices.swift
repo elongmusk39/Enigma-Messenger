@@ -9,23 +9,25 @@ import Foundation
 import FirebaseAuth
 import Firebase
 
-let DB_USER = Firestore.firestore().collection("users")
-
 class AuthServices {
     
     static let shared = AuthServices()
     @Published var currentUser: User? //for fetching user info
     
+//MARK: - Function
     
     @MainActor
     func signUpUser(user: User) async {
         do {
-            try await Auth.auth().createUser(withEmail: user.email.lowercased(), password: user.PIN)
-            await uploadUserData(user: user)
+            var userPassed = user
+            userPassed.email = user.email.replacingOccurrences(of: " ", with: "")
+            try await Auth.auth().createUser(withEmail: userPassed.email, password: userPassed.PIN)
+            await uploadUserData(user: userPassed)
             print("DEBUG: just done signing up user.")
             
         } catch {
-            print("DEBUG: error \(error.localizedDescription)")
+            print("DEBUG: error \(error.localizedDescription), mail \(user.email)")
+            
         }
     }
     
@@ -34,7 +36,7 @@ class AuthServices {
             "uniqueName": user.uniqueName,
             "PIN": user.PIN,
             "ID": user.ID,
-            "email": user.email.lowercased()
+            "email": user.email
         ]
         try? await Firestore.firestore().collection("users").document(user.email).setData(docData)
     }
@@ -82,7 +84,7 @@ class AuthServices {
         print("DEBUG: user just logged out")
     }
     
-    //MARK: ----------------------------------------
+//MARK: ----------------------------------------
     
     @MainActor //main thread, as all auth service should be
     func loadUserData() async -> User {

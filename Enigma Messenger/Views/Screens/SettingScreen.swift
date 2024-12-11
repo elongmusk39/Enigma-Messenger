@@ -10,6 +10,11 @@ import SwiftUI
 struct SettingScreen: View {
     
     @Binding var isLoggedIn: Bool
+    @Binding var showSetting: Bool
+    @State var showAlert: Bool = false
+    
+    let link = URL(string: "https://www.enigma.com/")!
+
     
     var body: some View {
         NavigationView {
@@ -51,25 +56,28 @@ struct SettingScreen: View {
                             .foregroundStyle(.gray)
                     }
                     
-                    HStack(spacing: 8) {
-                        Image(systemName: "arrow.up.right.square")
-                            .imageScale(.large)
-                        
-                        Text("Share Enigma")
-                            .font(.subheadline)
-                            .fontWeight(.regular)
-                            .foregroundStyle(.black)
-                        
-                        Spacer()
-                        
-                        Image(systemName: "chevron.right")
-                            .imageScale(.medium)
-                            .foregroundStyle(.gray)
+                    ShareLink(item: link) {
+                        HStack(spacing: 8) {
+                            Image(systemName: "arrow.up.right.square")
+                                .imageScale(.large)
+                            
+                            Text("Share Enigma")
+                                .font(.subheadline)
+                                .fontWeight(.regular)
+                                .foregroundStyle(.black)
+                            
+                            Spacer()
+                            
+                            Image(systemName: "chevron.right")
+                                .imageScale(.medium)
+                                .foregroundStyle(.gray)
+                        }
                     }
+                    
                 }
                 
                 Button {
-                    signOut()
+                    showAlert.toggle()
                 } label: {
                     Text("Logout")
                         .font(.headline)
@@ -93,14 +101,21 @@ struct SettingScreen: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
-                        
+                        showSetting.toggle()
                     } label: {
-                        Text("Edit")
-                            .font(.subheadline)
-                            .fontWeight(.regular)
-                            .foregroundStyle(.blue)
+                        Image(systemName: "xmark")
+                            .imageScale(.large)
+                            .foregroundStyle(.red)
                     }
                 }
+            }
+            .alert("Logging out?", isPresented: $showAlert) {
+                Button("Logout", role: .destructive, action: {
+                    signOut()
+                })
+                Button("Cancel", role: .cancel, action: {})
+            } message: {
+                Text("There is a problem logging in.")
             }
         }
         
@@ -115,7 +130,7 @@ struct SettingScreen: View {
 }
 
 #Preview {
-    SettingScreen(isLoggedIn: .constant(true))
+    SettingScreen(isLoggedIn: .constant(true), showSetting: .constant(false))
 }
 
 //MARK: ---------------------------------------------
@@ -125,10 +140,10 @@ struct ProfileHeaderView: View {
     
     var body: some View {
         HStack {
-            Image(systemName: "person.circle")
+            Image(systemName: profileImgStr(username: USER_LOADED.uniqueName))
                 .resizable()
                 .frame(width: 80, height: 80)
-                .foregroundStyle(.indigo)
+                .foregroundStyle(profileColor(username: USER_LOADED.uniqueName))
                 .clipShape(.circle)
                 .padding()
             

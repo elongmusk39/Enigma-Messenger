@@ -9,20 +9,43 @@ import Foundation
 
 //Hashable is for ForEach
 struct Message: Codable, Hashable {
-    var text: String
-    var senderEmail: String
-    var receiverEmail: String
-    var encryptedForm: String
+    
+    var id: String
+    var date: Date
+    var encryptedText: String
+    var senderName: String
+    var receiverName: String
+    var status: String
     
     static var messExample: Message {
-        Message(text: "Hello World", senderEmail: "Joker", receiverEmail: "Batman", encryptedForm: "Encrypted Form")
+        Message(id: "", date: Date.now, encryptedText: "Hello World", senderName: "Joker", receiverName: "Batman", status: "read")
     }
     
     static var arrExample: [Message] = [
-        Message(text: "Hello boys", senderEmail: "arcteryx@gmail.com", receiverEmail: "Batman", encryptedForm: "Encrypted Form"),
-        Message(text: "What's up, man", senderEmail: "Joker@gmail.com", receiverEmail: "ahah", encryptedForm: "Encrypted Form"),
-        Message(text: "How you doing?", senderEmail: "Joker@gmail.com", receiverEmail: "ahah", encryptedForm: "Encrypted Form"),
-        Message(text: "Feel like shit, man...", senderEmail: "arcteryx@gmail.com", receiverEmail: "Batman", encryptedForm: "Encrypted Form"),
-        Message(text: "Been through some rough shit", senderEmail: "arcteryx@gmail.com", receiverEmail: "Batman", encryptedForm: "Encrypted Form")
+        Message(id: "", date: Date.now, encryptedText: "Hello boys", senderName: "elongmusk39", receiverName: "Batman", status: "read"),
+        Message(id: "", date: Date.now, encryptedText: "What's up, man", senderName: "Joker@gmail.com", receiverName: "ahah", status: "read"),
+        Message(id: "", date: Date.now, encryptedText: "How you doing?", senderName: "Joker@gmail.com", receiverName: "ahah", status: "read"),
+        Message(id: "", date: Date.now, encryptedText: "Feel like shit, man...", senderName: "elongmusk39", receiverName: "as", status: "read"),
+        Message(id: "", date: Date.now, encryptedText: "Been through some rough shit", senderName: "arcteryx@gmail.com", receiverName: "Batman", status: "read")
     ]
+}
+
+enum MessageStatus {
+    case sent
+    case seen
+    case unread
+    case read
+    
+    var status: String {
+        switch self {
+        case .sent:
+            return "Sent"
+        case .seen:
+            return "Seen"
+        case .unread:
+            return "Unread"
+        case .read:
+            return "Read"
+        }
+    }
 }

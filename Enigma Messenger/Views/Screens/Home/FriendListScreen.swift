@@ -11,13 +11,15 @@ struct FriendListScreen: View {
     
     @Binding var showFriendList: Bool
     @State var searchText: String = ""
+    @State private var searchIsActive = false
+    
     @State var userArr: [User] = []
     
     var body: some View {
         NavigationView {
             VStack {
                 HStack {
-                    Text("Suggested friends:")
+                    Text(searchIsActive ? "Your search results:" : "Suggested friends:")
                         .font(.subheadline)
                         .fontWeight(.medium)
                         .foregroundStyle(.gray)
@@ -28,11 +30,11 @@ struct FriendListScreen: View {
                 
                 ScrollView {
                     LazyVStack(spacing: 12) {
-                        ForEach(userArr, id: \.self) { user in
+                        ForEach(searchIsActive ? searchResults : userArr, id: \.self) { user in
                             NavigationLink {
                                 ChatScreen(chatter: user)
                             } label: {
-                                FriendListCell(imgName: "person.circle", name: user.uniqueName, color: .gray)
+                                FriendListCell(imgName: profileImgStr(username: user.uniqueName), name: user.uniqueName, color: profileColor(username: user.uniqueName))
                             }
                                 
                             Divider().padding(.horizontal)
@@ -41,7 +43,7 @@ struct FriendListScreen: View {
                     .padding(.top, 8) //not hug the tabBar
                 }
             }
-            .navigationTitle("Friend List")
+            .navigationTitle("Looking for friend?")
             .navigationBarTitleDisplayMode(.inline)
             .tint(.black)
             .onAppear {
@@ -61,8 +63,17 @@ struct FriendListScreen: View {
                 }
             }
         }
-        .searchable(text: $searchText)
+        .searchable(text: $searchText, isPresented: $searchIsActive)
     }
+    
+    //Search results
+    var searchResults: [User] {
+            if searchText.isEmpty {
+                return []
+            } else {
+                return userArr.filter { $0.uniqueName.contains(searchText) }
+            }
+        }
     
 //MARK: Function ----------------------------------
     

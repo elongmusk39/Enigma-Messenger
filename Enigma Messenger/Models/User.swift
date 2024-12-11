@@ -12,7 +12,6 @@ struct User: Hashable, Codable { //for fetching
     var uniqueName: String
     var PIN: String
     var ID: String
-    
     var email: String
     
     static var emptyUser: User = User(uniqueName: "", PIN: "", ID: "", email: "")
